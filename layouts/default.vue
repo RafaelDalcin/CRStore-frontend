@@ -112,6 +112,11 @@ export default {
           title: 'Categories',
           to: '/admin/categories/'
         },
+        {
+          icon: 'mdi-account',
+          title: 'Coupons',
+          to: '/admin/discountCoupons/'
+        },
       ],
       miniVariant: false,
       right: true,

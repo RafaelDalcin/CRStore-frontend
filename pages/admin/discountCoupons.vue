@@ -7,7 +7,7 @@
             style=""
             large
             color="primary"
-            @click="getCategories"
+            @click="getDiscountCoupons"
             >
             Atualizar
           </v-btn>
@@ -15,8 +15,8 @@
             style=""
             large
             color="success"
-            @click="getCategories"
-            to="/admin/registerCategories"
+            @click="getDiscountCoupons"
+            to="/admin/registerDiscountCoupons"
             >
             Cadastrar
           </v-btn>  
@@ -33,7 +33,7 @@
             </v-card-title>
             <v-data-table
               :headers="headers"
-              :items="categories"
+              :items="discountCoupons"
             >
             <template v-slot:item.actions="{ item }">
               <v-icon
@@ -59,7 +59,7 @@
 
 <script>
 export default {
-  name: 'CategoriesAdminPage',
+  name: 'discountCouponsAdminPage',
 
   data () {
     return {
@@ -71,32 +71,44 @@ export default {
           value: 'id',
         },
         {
-          text: 'Category',
+          text: 'Código de desconto',
           align: 'center',
           sortable: 'false',
-          value: 'name',
+          value: 'discountCode',
+        },
+        {
+          text: 'Valor do desconto',
+          align: 'center',
+          sortable: 'false',
+          value: 'discountValue',
+        },
+        {
+          text: 'Tipo de desconto',
+          align: 'center',
+          sortable: 'false',
+          value: 'discountType',
         },
         { text: "", value: "actions" }
       ],
-      categories: []
+      discountCoupons: []
     }
   },
 
   created () { //executado toda vez que a pagina é carregada
-    this.getCategories();
+    this.getDiscountCoupons();
   },
 
   methods: {
-    async getCategories () {
-      let response = await this.$axios.$get('http://localhost:5555/categories');
-      this.categories = response.data;
+    async getDiscountCoupons () {
+      let response = await this.$axios.$get('http://localhost:5555/discountCoupons');
+      this.discountCoupons = response.data;
     },
-    async deletar (category) {
+    async deletar (discountCoupon) {
       try {
-        if (confirm(`Deseja deletar a categoria ${category.name} ID - ${category.id}`)) {
-          let response = await this.$axios.$post('http://localhost:5555/categories/destroy', { id: category.id });
+        if (confirm(`Deseja deletar a categoria ${discountCoupon.name} ID - ${discountCoupon.id}`)) {
+          let response = await this.$axios.$post('http://localhost:5555/discountCoupons/destroy', { id: discountCoupon.id });
           this.$toast.success(response.message);
-          this.getCategories();
+          this.getDiscountCoupons();
         }
         
       } catch (error) {
@@ -104,10 +116,10 @@ export default {
       }
     },
 
-    async editar (category) {
+    async editar (discountCoupon) {
       this.$router.push({
-        name: 'admin-registerCategories',
-        params: { id: category.id },
+        name: 'admin-registerDiscountCoupons',
+        params: { id: discountCoupon.id },
       });
     }
 

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>Register Categories</h1>
+    <h1>Cadastro de Categorias</h1>
     <hr>
     <v-form v-model="valid">
       <v-container>
@@ -9,7 +9,7 @@
             cols="2"
           >
             <v-text-field
-              v-model="categories.id"
+              v-model="category.id"
               placeholder="ID"
               label="ID"
               disabled
@@ -20,7 +20,7 @@
         <v-row>
           <v-col>
             <v-text-field
-              v-model="categories.name"
+              v-model="category.name"
               placeholder="Name"
               label="Name"
               required
@@ -57,7 +57,7 @@ export default {
   data () {
     return {
       valid: false,
-      categories: {
+      category: {
         id: null,
         name: null
       },
@@ -80,28 +80,27 @@ export default {
         }
         //montamos a variárel categoria para enviar nos posts
         let category = {
-          id: this.categories.id,
-          name: this.categories.name,
+          id: this.category.id,
+          name: this.category.name,
         };
-        console.log(category);
         //caso não tenha ID na tela, significa que é um cadastro NOVO
         //por isso ele vai apenas com o objeto da categoria para o cadastro
         //como no final tem um RETURN, ele vai cair fora da função PERSISTIR
         if (!this.category.id) {
-          await this.$axios.$post('http://localhost:5555/categories', category);
+          await this.$axios.$post('http://localhost:5555/categories/persist', category);
           this.$toast.success('Cadastro realizado com sucesso!');
-          return this.$router.push('/admin/categories');
+          return this.$router.push('/admin/items');
         }
-        await this.$axios.$post(`http://localhost:5555/categories/`, category);
+        await this.$axios.$post(`http://localhost:5555/categories/persist`, category);
         this.$toast.success('Cadastro atualizado com sucesso!');
-        return this.$router.push('/admin/categories');
+        return this.$router.push('/admin/items');
       } catch (error) {
         this.$toast.error('Ocorreu um erro ao realizar o cadastro!');
       }
     },
     async getById (id) {
-      let response = await this.$axios.$get(`http://localhost:3333/categories/`);
-      this.categories = response.data
+      let response = await this.$axios.$get(`http://localhost:5555/categories/${id}`);
+      this.category = response.data
     }
   }
 }
