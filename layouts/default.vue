@@ -108,15 +108,31 @@ export default {
           to: '/admin/items/'
         },
         {
-          icon: 'mdi-shield',
+          icon: 'mdi-shape',
           title: 'Categories',
           to: '/admin/categories/'
         },
         {
-          icon: 'mdi-account',
+          icon: 'mdi-ticket',
           title: 'Coupons',
           to: '/admin/discountCoupons/'
         },
+        {
+          icon: 'mdi-map-marker',
+          title: 'Addresses',
+          to: '/admin/addresses/'
+        },
+        {
+          icon: 'mdi-account',
+          title: 'Login',
+          to: '/users/login/'
+        },
+        {
+          icon: 'mdi-account',
+          title: 'Login',
+          to: '/users/register/'
+        },
+        
       ],
       miniVariant: false,
       right: true,
