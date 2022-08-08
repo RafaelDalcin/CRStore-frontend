@@ -76,7 +76,7 @@
       <v-btn
         color="error"
         large
-        to="/admin/items"
+        to="/admin/items/"
       >
         Cancel
       </v-btn>
@@ -130,16 +130,14 @@ export default {
 
         };
 
-             console.log(item);
-
         if (!this.item.id) {
           await this.$axios.$post('http://localhost:5555/items/persist', item);
           this.$toast.success('Cadastro realizado com sucesso!');
-          return this.$router.push('/admin/items');
+          return this.$router.push('/admin/items/');
         }
         await this.$axios.$post(`http://localhost:5555/items/persist`, item);
         this.$toast.success('Cadastro atualizado com sucesso!');
-        return this.$router.push('/admin/items');
+        return this.$router.push('/admin/items/');
       } catch (error) {
         this.$toast.error('Ocorreu um erro ao realizar o cadastro!');
       }
@@ -147,7 +145,7 @@ export default {
     async getById (id) {
       console.log(id);
       let response = await this.$axios.$get(`http://localhost:5555/items/${id}` );
-      this.item = response.data
+      this.item = response.data;
     },
 
     async getCategories () {
@@ -157,7 +155,7 @@ export default {
     },
     async getItems () {
       let response = await this.$axios.$get('http://localhost:5555/items');
-      this.items = response.data
+      this.items = response.data;
     },
     
   }

@@ -84,7 +84,7 @@ export default {
 
       await this.$axios.$post('http://localhost:5555/users/register', user);
       this.$toast.success('Cadastro realizado com sucesso!');
-      return this.$router.push('/users/login');
+      return this.$router.push('/public/login/');
       
       } catch (error) {
       this.$toast.error('Ocorreu um erro ao realizar o login!');

@@ -4,22 +4,23 @@
       <v-col>
         <v-card>
           <v-btn
+            style=""
             large
             color="primary"
-            @click="getAdresses"
+            @click="getItems"
             >
             Atualizar
           </v-btn>
-           <v-btn
+          <v-btn
             large
             color="success"
-            @click="getAdresses"
-            to="/admin/registerAdresses"
+            @click="getItems"
+            to="/admin/items/register/"
             >
             Cadastrar
-          </v-btn>  
+          </v-btn>
             <v-card-title>
-              Endereços
+              Items
               <v-spacer></v-spacer>
               <v-text-field
                 append-icon="mdi-magnify"
@@ -31,20 +32,20 @@
             </v-card-title>
             <v-data-table
               :headers="headers"
-              :items="addresses"
-            >
+              :items="items"
+              >
             <template v-slot:item.actions="{ item }">
               <v-icon
                 small
                 class="mr-2"
                 @click="editar(item)"
-                >
+              >
                 mdi-pencil
               </v-icon>
               <v-icon
                 small
                 @click="deletar(item)"
-                >
+              >
                 mdi-delete
               </v-icon>
             </template>
@@ -57,7 +58,7 @@
 
 <script>
 export default {
-  name: 'AdressesAdminPage',
+  name: 'AdminItemsPage',
 
   data () {
     return {
@@ -69,50 +70,56 @@ export default {
           value: 'id',
         },
         {
-          text: 'CEP',
+          text: 'Item',
           align: 'center',
           sortable: 'false',
-          value: 'zipcode',
-        },
-                {
-          text: 'Estado',
-          align: 'center',
-          sortable: 'false',
-          value: 'uf',
+          value: 'name',
         },
         {
-          text: 'Cidade',
+          text: 'Category',
           align: 'center',
           sortable: 'false',
-          value: 'city',
+          value: 'category.name',
         },
         {
-          text: 'Logradouro',
+          text: 'Amount',
           align: 'center',
           sortable: 'false',
-          value: 'address',
+          value: 'amount',
+        },
+        {
+          text: 'Price',
+          align: 'center',
+          sortable: 'false',
+          value: 'price',
         },
         { text: "", value: "actions" }
       ],
-      addresses: []
+      items: [],  
+      categories: []
     }
   },
 
   created () { //executado toda vez que a pagina é carregada
-    this.getAdresses();
+    this.getItems()
   },
 
   methods: {
-    async getAdresses () {
-      let response = await this.$axios.$get('http://localhost:5555/addresses');
-      this.addresses = response.data;
+    async getItems () {
+      let response = await this.$axios.$get('http://localhost:5555/items');
+      this.items = response.data
     },
-    async deletar (address) {
+        async getCategories () {
+      let response = await this.$axios.$get('http://localhost:5555/categories');
+      this.categories = response.data
+    },
+
+    async deletar (item) {
       try {
-        if (confirm(`Deseja deletar o endereço ${address.address} ID - ${address.id}`)) {
-          let response = await this.$axios.$post('http://localhost:5555/addresses/destroy', { id: address.id });
+        if (confirm(`Deseja deletar o item ${item.category.name} ID - ${item.id}`)) {
+          let response = await this.$axios.$post('http://localhost:5555/items/destroy', { id: item.id });
           this.$toast.success(response.message);
-          this.getAdresses();
+          this.getItems();
         }
         
       } catch (error) {
@@ -120,10 +127,10 @@ export default {
       }
     },
 
-    async editar (address) {
+    async editar (item) {
       this.$router.push({
-        name: 'admin-registerAddresses',
-        params: { id: address.id },
+        name: 'admin-registerItems',
+        params: { id: item.id },
       });
     }
 

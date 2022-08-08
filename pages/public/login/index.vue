@@ -1,7 +1,7 @@
 <template>
   <v-container style="padding: 10%;">
   <v-container style="margin-left: -55%; width: 100%">
-      <v-row style="margin-left: 32%;">
+      <v-row style="margin-left: 32%; margin-top: 5%;">
         <h1>Bem-vindo a <v-span style="color: rgb(42, 114, 201)">CRStore</v-span>, primeira vez por aqui? Cadastre-se para continuar</h1>
       </v-row>
       <v-row style="margin-left: 32%; margin-top: 5%">
@@ -10,7 +10,7 @@
             depressed
             elevation="7"
             large
-            to="/users/register"
+            to="/public/register/"
           >
             Cadastre-se aqui
         </v-btn>
@@ -64,7 +64,7 @@
 export default {
   layout: 'login',
   name: 'LoginPage',
-
+  
   data () {
     return {
       show: false,
@@ -88,14 +88,28 @@ export default {
 
         let response = await this.$axios.$post(`http://localhost:5555/users/login/`, this.user);
         let token = response.token;
-        console.log(response);
+        let role = response.userRole;
 
         if (!token) {
           return this.$toast.warning('O token é inválido')
         } else {
-          localStorage.setItem('crstore-api-token', token);
-          this.$toast.success(response.message);
-        }
+
+          if (role === 'customer') {
+            localStorage.setItem('crstore-api-token', token);
+            this.$toast.success(response.message);
+            return this.$router.push('/public/user/');
+          }
+          else if (role === 'admin') {
+            localStorage.setItem('crstore-api-token', token);
+            this.$toast.success(response.message);
+            return this.$router.push('/admin/');
+          }
+          else if (role === 'deliveryman') {
+            localStorage.setItem('crstore-api-token', token);
+            this.$toast.success(response.message);
+            return this.$router.push('/public/deliveryman/');
+          }
+        } 
 
       } catch (error) { 
         this.$toast.error('Ocorreu um erro ao realizar o login!');

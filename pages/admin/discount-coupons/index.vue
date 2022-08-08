@@ -16,7 +16,7 @@
             large
             color="success"
             @click="getDiscountCoupons"
-            to="/admin/registerDiscountCoupons"
+            to="/admin/discount-coupons/register"
             >
             Cadastrar
           </v-btn>  
@@ -59,7 +59,7 @@
 
 <script>
 export default {
-  name: 'discountCouponsAdminPage',
+  name: 'DiscountCouponsAdminPage',
 
   data () {
     return {
@@ -105,7 +105,7 @@ export default {
     },
     async deletar (discountCoupon) {
       try {
-        if (confirm(`Deseja deletar a categoria ${discountCoupon.name} ID - ${discountCoupon.id}`)) {
+        if (confirm(`Deseja deletar o cupom ${discountCoupon.discountCode} ID - ${discountCoupon.id}`)) {
           let response = await this.$axios.$post('http://localhost:5555/discountCoupons/destroy', { id: discountCoupon.id });
           this.$toast.success(response.message);
           this.getDiscountCoupons();

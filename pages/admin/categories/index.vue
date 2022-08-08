@@ -16,7 +16,7 @@
             large
             color="success"
             @click="getCategories"
-            to="/admin/registerCategories"
+            to="/admin/categories/register"
             >
             Cadastrar
           </v-btn>  

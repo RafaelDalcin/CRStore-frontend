@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>Cadastro de Categorias</h1>
+    <h1>Cadastro de Métodos de Pagamento</h1>
     <hr>
     <v-form v-model="valid">
       <v-container>
@@ -9,18 +9,18 @@
             cols="2"
           >
             <v-text-field
-              v-model="category.id"
+              v-model="paymentMethod.id"
               placeholder="ID"
               label="ID"
               disabled
-              outlined
+              outlined  
             />
           </v-col>
         </v-row>
         <v-row>
           <v-col>
             <v-text-field
-              v-model="category.name"
+              v-model="paymentMethod.name"
               placeholder="Name"
               label="Name"
               required
@@ -43,7 +43,7 @@
       <v-btn
         color="error"
         large
-        to="/admin/categories"
+        to="/admin/payment-methods"
       >
         Cancel
       </v-btn>
@@ -53,11 +53,11 @@
 
 <script>
 export default {
-  name: 'RegisterCategoriesPage',
+  name: 'RegisterPaymentMethodsPage',
   data () {
     return {
       valid: false,
-      category: {
+      paymentMethod: {
         id: null,
         name: null
       },
@@ -79,28 +79,28 @@ export default {
           return this.$toast.warning('Preencha todos os campos obrigatórios')
         }
         //montamos a variárel categoria para enviar nos posts
-        let category = {
-          id: this.category.id,
-          name: this.category.name,
+        let paymentMethod = {
+          id: this.paymentMethod.id,
+          name: this.paymentMethod.name,
         };
         //caso não tenha ID na tela, significa que é um cadastro NOVO
         //por isso ele vai apenas com o objeto da categoria para o cadastro
         //como no final tem um RETURN, ele vai cair fora da função PERSISTIR
-        if (!this.category.id) {
-          await this.$axios.$post('http://localhost:5555/categories/persist', category);
+        if (!this.paymentMethod.id) {
+          await this.$axios.$post('http://localhost:5555/payment-method/persist', paymentMethod);
           this.$toast.success('Cadastro realizado com sucesso!');
-          return this.$router.push('/admin/items');
+          return this.$router.push('/admin/payment-methods/');
         }
-        await this.$axios.$post(`http://localhost:5555/categories/persist`, category);
+        await this.$axios.$post(`http://localhost:5555/payment-method/persist`, paymentMethod);
         this.$toast.success('Cadastro atualizado com sucesso!');
-        return this.$router.push('/admin/items');
+        return this.$router.push('/admin/payment-methods/');
       } catch (error) {
         this.$toast.error('Ocorreu um erro ao realizar o cadastro!');
       }
     },
     async getById (id) {
-      let response = await this.$axios.$get(`http://localhost:5555/categories/${id}`);
-      this.category = response.data
+      let response = await this.$axios.$get(`http://localhost:5555/payment-method/${id}`);
+      this.paymentMethod = response.data
     }
   }
 }

@@ -7,20 +7,21 @@
             style=""
             large
             color="primary"
-            @click="getItems"
+            @click="getPaymentMethods"
             >
             Atualizar
           </v-btn>
-          <v-btn
+           <v-btn
+            style=""
             large
             color="success"
-            @click="getItems"
-            to="/admin/registerItems"
+            @click="getPaymentMethods"
+            to="/admin/payment-methods/register"
             >
             Cadastrar
-          </v-btn>
+          </v-btn>  
             <v-card-title>
-              Items
+              Métodos de Pagamento
               <v-spacer></v-spacer>
               <v-text-field
                 append-icon="mdi-magnify"
@@ -32,20 +33,20 @@
             </v-card-title>
             <v-data-table
               :headers="headers"
-              :items="items"
-              >
+              :items="paymentMethods"
+            >
             <template v-slot:item.actions="{ item }">
               <v-icon
                 small
                 class="mr-2"
                 @click="editar(item)"
-              >
+                >
                 mdi-pencil
               </v-icon>
               <v-icon
                 small
                 @click="deletar(item)"
-              >
+                >
                 mdi-delete
               </v-icon>
             </template>
@@ -58,7 +59,7 @@
 
 <script>
 export default {
-  name: 'AdminItemsPage',
+  name: 'PaymentMethodsAdminPage',
 
   data () {
     return {
@@ -70,56 +71,33 @@ export default {
           value: 'id',
         },
         {
-          text: 'Item',
+          text: 'Método de Pagamento',
           align: 'center',
           sortable: 'false',
           value: 'name',
         },
-        {
-          text: 'Category',
-          align: 'center',
-          sortable: 'false',
-          value: 'category.name',
-        },
-        {
-          text: 'Amount',
-          align: 'center',
-          sortable: 'false',
-          value: 'amount',
-        },
-        {
-          text: 'Price',
-          align: 'center',
-          sortable: 'false',
-          value: 'price',
-        },
         { text: "", value: "actions" }
       ],
-      items: [],  
-      categories: []
+      paymentMethods: []
     }
   },
 
   created () { //executado toda vez que a pagina é carregada
-    this.getItems()
+    this.getPaymentMethods();
   },
 
   methods: {
-    async getItems () {
-      let response = await this.$axios.$get('http://localhost:5555/items');
-      this.items = response.data
+    async getPaymentMethods () {
+      let response = await this.$axios.$get('http://localhost:5555/payment-method');
+      this.paymentMethods = response.data;
+      console.log(this.paymentMethods);
     },
-        async getCategories () {
-      let response = await this.$axios.$get('http://localhost:5555/categories');
-      this.categories = response.data
-    },
-
-    async deletar (item) {
+    async deletar (paymentMethod) {
       try {
-        if (confirm(`Deseja deletar o item ${item.category.name} ID - ${item.id}`)) {
-          let response = await this.$axios.$post('http://localhost:5555/items/destroy', { id: item.id });
+        if (confirm(`Deseja deletar o método de pagamento ${paymentMethod.name} ID - ${paymentMethod.id}`)) {
+          let response = await this.$axios.$post('http://localhost:5555/payment-method/destroy', { id: paymentMethod.id });
           this.$toast.success(response.message);
-          this.getItems();
+          this.getPaymentMethods();
         }
         
       } catch (error) {
@@ -127,10 +105,10 @@ export default {
       }
     },
 
-    async editar (item) {
+    async editar (paymentMethod) {
       this.$router.push({
-        name: 'admin-registerItems',
-        params: { id: item.id },
+        name: 'admin-registerPaymentMethods',
+        params: { id: paymentMethod.id },
       });
     }
 

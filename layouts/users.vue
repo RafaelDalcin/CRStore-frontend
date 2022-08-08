@@ -98,19 +98,25 @@ export default {
       fixed: false,
       items: [
 
-      // ---------> ADMINS PAGE <----------
+      // ----------> USERS PAGE <------------
 
-      
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
+          icon: 'mdi-home',
+          title: 'Home',
+          to: '/public/user/'
         },
         {
-          icon: 'mdi-account',
-          title: 'Login',
-          to: '/public/login/'
+          icon: 'mdi-account-circle',
+          title: 'Minha conta',
+          to: '/public/user/my-account/'
         },
+        {
+          icon: 'mdi-list-box',
+          title: 'Pedidos',
+          to: '/public/user/my-orders/'
+        },
+
+
         
       ],
       miniVariant: false,

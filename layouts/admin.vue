@@ -111,6 +111,27 @@ export default {
           title: 'Login',
           to: '/public/login/'
         },
+
+        {
+          icon: 'mdi-sword',
+          title: 'Items',
+          to: '/admin/items/'
+        },
+        {
+          icon: 'mdi-shape',
+          title: 'Categories',
+          to: '/admin/categories/'
+        },
+        {
+          icon: 'mdi-ticket',
+          title: 'Coupons',
+          to: '/admin/discount-coupons/'
+        },
+        {
+          icon: 'mdi-credit-card',
+          title: 'Método de Pagamento',
+          to: '/admin/payment-methods/'
+        },
         
       ],
       miniVariant: false,

@@ -65,7 +65,7 @@
       <v-btn
         color="error"
         large
-        to="/admin/discountCoupons"
+        to="/admin/discount-coupons/"
       >
         Cancel
       </v-btn>  
@@ -118,11 +118,11 @@ export default {
         if (!this.discountCoupon.id) {
           await this.$axios.$post('http://localhost:5555/discountCoupons/persist', discountCoupon);
           this.$toast.success('Cadastro realizado com sucesso!');
-          return this.$router.push('/admin/discountcoupons');
+          return this.$router.push('/admin/discount-coupons/');
         }
         await this.$axios.$post(`http://localhost:5555/discountCoupons/persist`, discountCoupon);
         this.$toast.success('Cadastro atualizado com sucesso!');
-        return this.$router.push('/admin/discountcoupons');
+        return this.$router.push('/admin/discount-coupons/');
       } catch (error) {
         this.$toast.error('Ocorreu um erro ao realizar o cadastro!');
       }
