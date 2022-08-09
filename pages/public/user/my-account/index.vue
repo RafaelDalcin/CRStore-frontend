@@ -1,10 +1,10 @@
 <template>
-    <h1>salve</h1>
+    <h1></h1>
 </template>
 
 <script>
 export default {
-  layout: 'users'
+  layout: 'users',
 }
 </script>
 

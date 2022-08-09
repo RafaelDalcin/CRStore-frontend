@@ -1,19 +1,17 @@
 <template>
-  <h1>AQUI É A PAGINA DE USUARIO</h1>
+  <v-container>
+    <v-container>
+      <h1>
+        123
+      </h1>
+    </v-container>
+  </v-container>
 </template>
 
 <script>
 export default {
-  layout: 'users',
-  generate: {
-    routes() {
-      return axios.get('http://localhost:5555/users/').then((res) => {
-        return res.data.map((user) => {
-          return `/public/users/${user.id}`;
-        });
-      });
-    },
-  },
+  layout: 'users'
+
 }
 </script>
 

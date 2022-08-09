@@ -5,15 +5,6 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
-  generate: {
-   async routes() {
-      return axios.get('https://localhost:5555/users').then((res) => {
-        return res.data.map((user) => {
-          return `public/users/${user.name}`;
-        });
-      });
-    },
-  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - crs-frontend',
