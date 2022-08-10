@@ -86,7 +86,7 @@ export default {
           return this.$toast.warning('Preencha todos os campos obrigatórios')
         }
 
-        let response = await this.$axios.$post(`http://localhost:5555/users/login/`, this.user);
+        let response = await this.$api.$post(`http://localhost:5555/users/login/`, this.user);
         let token = response.token;
         let role = response.userRole;
 

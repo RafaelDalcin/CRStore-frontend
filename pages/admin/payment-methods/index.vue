@@ -60,6 +60,7 @@
 <script>
 export default {
   name: 'PaymentMethodsAdminPage',
+  layout: 'admin',
 
   data () {
     return {

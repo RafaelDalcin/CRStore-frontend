@@ -77,6 +77,7 @@
 export default {
 
   name: 'RegisterDiscountCouponsPage',
+  layout: 'admin',
   data () {
     
     return {

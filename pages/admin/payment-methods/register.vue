@@ -54,6 +54,7 @@
 <script>
 export default {
   name: 'RegisterPaymentMethodsPage',
+  layout: 'admin',
   data () {
     return {
       valid: false,

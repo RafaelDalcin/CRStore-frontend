@@ -59,6 +59,7 @@
 <script>
 export default {
   name: 'AdminItemsPage',
+  layout: 'admin',
 
   data () {
     return {

@@ -107,12 +107,6 @@ export default {
           to: '/'
         },
         {
-          icon: 'mdi-account',
-          title: 'Login',
-          to: '/public/login/'
-        },
-
-        {
           icon: 'mdi-sword',
           title: 'Items',
           to: '/admin/items/'

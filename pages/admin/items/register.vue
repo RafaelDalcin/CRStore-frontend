@@ -87,6 +87,8 @@
 <script>
 export default {
   name: 'RegisterItemsPage',
+  layout: 'admin',
+  
   data () {
     return {
       valid: false,

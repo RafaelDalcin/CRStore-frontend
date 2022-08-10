@@ -60,6 +60,7 @@
 <script>
 export default {
   name: 'DiscountCouponsAdminPage',
+  layout: 'admin',
 
   data () {
     return {

@@ -54,6 +54,7 @@
 <script>
 export default {
   name: 'RegisterCategoriesPage',
+  layout: 'admin',
   data () {
     return {
       valid: false,

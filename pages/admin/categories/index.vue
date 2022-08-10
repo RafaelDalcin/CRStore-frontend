@@ -60,6 +60,7 @@
 <script>
 export default {
   name: 'CategoriesAdminPage',
+  layout: 'admin',
 
   data () {
     return {
