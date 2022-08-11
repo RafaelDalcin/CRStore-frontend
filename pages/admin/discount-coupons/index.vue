@@ -101,13 +101,13 @@ export default {
 
   methods: {
     async getDiscountCoupons () {
-      let response = await this.$axios.$get('http://localhost:5555/discountCoupons');
+      let response = await this.$api.get('http://localhost:5555/discountCoupons');
       this.discountCoupons = response.data;
     },
     async deletar (discountCoupon) {
       try {
         if (confirm(`Deseja deletar o cupom ${discountCoupon.discountCode} ID - ${discountCoupon.id}`)) {
-          let response = await this.$axios.$post('http://localhost:5555/discountCoupons/destroy', { id: discountCoupon.id });
+          let response = await this.$api.post('http://localhost:5555/discountCoupons/destroy', { id: discountCoupon.id });
           this.$toast.success(response.message);
           this.getDiscountCoupons();
         }

@@ -88,11 +88,11 @@ export default {
         //por isso ele vai apenas com o objeto da categoria para o cadastro
         //como no final tem um RETURN, ele vai cair fora da função PERSISTIR
         if (!this.category.id) {
-          await this.$axios.$post('http://localhost:5555/categories/persist', category);
+          await this.$toast.$post('http://localhost:5555/categories/persist', category);
           this.$toast.success('Cadastro realizado com sucesso!');
           return this.$router.push('/admin/categories/');
         }
-        await this.$axios.$post(`http://localhost:5555/categories/persist`, category);
+        await this.$api.post(`http://localhost:5555/categories/persist`, category);
         this.$toast.success('Cadastro atualizado com sucesso!');
         return this.$router.push('/admin/categories/');
       } catch (error) {
@@ -100,7 +100,7 @@ export default {
       }
     },
     async getById (id) {
-      let response = await this.$axios.$get(`http://localhost:5555/categories/${id}`);
+      let response = await this.$api.get(`http://localhost:5555/categories/${id}`);
       this.category = response.data
     }
   }

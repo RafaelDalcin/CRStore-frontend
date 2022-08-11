@@ -100,12 +100,6 @@ export default {
 
       // ---------> ADMINS PAGE <----------
 
-      
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
-        },
         {
           icon: 'mdi-sword',
           title: 'Items',

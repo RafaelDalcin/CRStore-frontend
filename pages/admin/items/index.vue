@@ -107,18 +107,18 @@ export default {
 
   methods: {
     async getItems () {
-      let response = await this.$axios.$get('http://localhost:5555/items');
+      let response = await this.$api.get('http://localhost:5555/items');
       this.items = response.data
     },
         async getCategories () {
-      let response = await this.$axios.$get('http://localhost:5555/categories');
+      let response = await this.$api.get('http://localhost:5555/categories');
       this.categories = response.data
     },
 
     async deletar (item) {
       try {
         if (confirm(`Deseja deletar o item ${item.category.name} ID - ${item.id}`)) {
-          let response = await this.$axios.$post('http://localhost:5555/items/destroy', { id: item.id });
+          let response = await this.$api.post('http://localhost:5555/items/destroy', { id: item.id });
           this.$toast.success(response.message);
           this.getItems();
         }
@@ -130,7 +130,7 @@ export default {
 
     async editar (item) {
       this.$router.push({
-        name: 'admin-registerItems',
+        name: 'admin-items-register',
         params: { id: item.id },
       });
     }

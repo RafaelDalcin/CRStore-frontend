@@ -89,13 +89,13 @@ export default {
 
   methods: {
     async getCategories () {
-      let response = await this.$axios.$get('http://localhost:5555/categories');
+      let response = await this.$api.get('http://localhost:5555/categories');
       this.categories = response.data;
     },
     async deletar (category) {
       try {
         if (confirm(`Deseja deletar a categoria ${category.name} ID - ${category.id}`)) {
-          let response = await this.$axios.$post('http://localhost:5555/categories/destroy', { id: category.id });
+          let response = await this.$api.post('http://localhost:5555/categories/destroy', { id: category.id });
           this.$toast.success(response.message);
           this.getCategories();
         }

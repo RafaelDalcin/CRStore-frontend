@@ -89,14 +89,14 @@ export default {
 
   methods: {
     async getPaymentMethods () {
-      let response = await this.$axios.$get('http://localhost:5555/payment-method');
+      let response = await this.$api.get('http://localhost:5555/payment-method');
       this.paymentMethods = response.data;
       console.log(this.paymentMethods);
     },
     async deletar (paymentMethod) {
       try {
         if (confirm(`Deseja deletar o método de pagamento ${paymentMethod.name} ID - ${paymentMethod.id}`)) {
-          let response = await this.$axios.$post('http://localhost:5555/payment-method/destroy', { id: paymentMethod.id });
+          let response = await this.$api.post('http://localhost:5555/payment-method/destroy', { id: paymentMethod.id });
           this.$toast.success(response.message);
           this.getPaymentMethods();
         }

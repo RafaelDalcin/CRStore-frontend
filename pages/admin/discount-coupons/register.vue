@@ -117,11 +117,11 @@ export default {
         };
 
         if (!this.discountCoupon.id) {
-          await this.$axios.$post('http://localhost:5555/discountCoupons/persist', discountCoupon);
+          await this.$api.post('http://localhost:5555/discountCoupons/persist', discountCoupon);
           this.$toast.success('Cadastro realizado com sucesso!');
           return this.$router.push('/admin/discount-coupons/');
         }
-        await this.$axios.$post(`http://localhost:5555/discountCoupons/persist`, discountCoupon);
+        await this.$api.post(`http://localhost:5555/discountCoupons/persist`, discountCoupon);
         this.$toast.success('Cadastro atualizado com sucesso!');
         return this.$router.push('/admin/discount-coupons/');
       } catch (error) {
@@ -130,7 +130,7 @@ export default {
     },
 
     async getById (id) {
-      let response = await this.$axios.$get(`http://localhost:5555/discountCoupons/${id}` );
+      let response = await this.$api.get(`http://localhost:5555/discountCoupons/${id}` );
       
       this.discountCoupon = response.data
       

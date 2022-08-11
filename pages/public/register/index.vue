@@ -82,7 +82,7 @@ export default {
         phone: this.user.phone
       }
 
-      await this.$axios.$post('http://localhost:5555/users/register', user);
+      await this.$api.post('http://localhost:5555/users/register', user);
       this.$toast.success('Cadastro realizado com sucesso!');
       return this.$router.push('/public/login/');
       

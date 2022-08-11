@@ -63,6 +63,14 @@
               ></v-autocomplete>
             </v-col>
         </v-row>
+        <v-text-field
+          v-model="item.image"
+          placeholder="URL Imagem"
+          label="Image"
+          required
+          :rules="rule"
+          outlined
+        />
       </v-container>
     </v-form>
     <v-container>
@@ -97,7 +105,8 @@ export default {
         name: null,
         price: null,
         amount: null,
-        idCategory: null
+        idCategory: null,
+        image: null
       },
       rule: [
         v => !!v || 'Esse campo é obrigatório'
@@ -128,16 +137,17 @@ export default {
           name: this.item.name,
           price: this.item.price,
           amount: this.item.amount,
-          idCategory: this.item.idCategory
+          idCategory: this.item.idCategory,
+          image: this.item.image
 
         };
-
+        
         if (!this.item.id) {
-          await this.$axios.$post('http://localhost:5555/items/persist', item);
+          await this.$api.post('http://localhost:5555/items/persist', item);
           this.$toast.success('Cadastro realizado com sucesso!');
           return this.$router.push('/admin/items/');
         }
-        await this.$axios.$post(`http://localhost:5555/items/persist`, item);
+        await this.$api.post(`http://localhost:5555/items/persist`, item);
         this.$toast.success('Cadastro atualizado com sucesso!');
         return this.$router.push('/admin/items/');
       } catch (error) {
@@ -146,17 +156,17 @@ export default {
     },
     async getById (id) {
       console.log(id);
-      let response = await this.$axios.$get(`http://localhost:5555/items/${id}` );
+      let response = await this.$api.get(`http://localhost:5555/items/${id}` );
       this.item = response.data;
     },
 
     async getCategories () {
-      let response = await this.$axios.$get('http://localhost:5555/categories');
+      let response = await this.$api.get('http://localhost:5555/categories');
       this.categories = response.data;
 
     },
     async getItems () {
-      let response = await this.$axios.$get('http://localhost:5555/items');
+      let response = await this.$api.get('http://localhost:5555/items');
       this.items = response.data;
     },
     
