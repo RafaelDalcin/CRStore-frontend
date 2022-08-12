@@ -88,7 +88,7 @@ export default {
         //por isso ele vai apenas com o objeto da categoria para o cadastro
         //como no final tem um RETURN, ele vai cair fora da função PERSISTIR
         if (!this.category.id) {
-          await this.$toast.$post('http://localhost:5555/categories/persist', category);
+          await this.$api.post('http://localhost:5555/categories/persist', category);
           this.$toast.success('Cadastro realizado com sucesso!');
           return this.$router.push('/admin/categories/');
         }

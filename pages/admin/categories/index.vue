@@ -107,7 +107,7 @@ export default {
 
     async editar (category) {
       this.$router.push({
-        name: 'admin-registerCategories',
+        name: 'admin-categories-register',
         params: { id: category.id },
       });
     }

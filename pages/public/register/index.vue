@@ -1,8 +1,11 @@
 <template>
   <v-form v-model="valid">
-    <v-container style="margin-top: 15%">
-      <v-row justify="center">
-        <v-col
+    <v-container style="margin-top:15%;">
+      <v-row>
+        <v-card shaped style="width: 200%; margin-top: -5%; background-color:grey;" elevation="">
+          <v-card-title style="color:black; margin-left:37%;"> CRStore, a melhor!</v-card-title>
+           <v-col 
+          style="margin-left: 24%"
           cols="6"
         >
           <v-text-field
@@ -40,6 +43,7 @@
           Cadastrar
           </v-btn>
         </v-col>
+        </v-card>
       </v-row>
     </v-container>
   </v-form>

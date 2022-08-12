@@ -98,9 +98,7 @@ export default {
       fixed: false,
       items: [
 
-      // ---------> ADMINS PAGE <----------
-
-      
+      // ---------> ADMINS PAGE <---------
         {
           icon: 'mdi-apps',
           title: 'Welcome',

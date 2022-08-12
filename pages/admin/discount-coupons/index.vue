@@ -119,7 +119,7 @@ export default {
 
     async editar (discountCoupon) {
       this.$router.push({
-        name: 'admin-registerDiscountCoupons',
+        name: 'admin-discount-coupons-register',
         params: { id: discountCoupon.id },
       });
     }

@@ -108,7 +108,7 @@ export default {
 
     async editar (paymentMethod) {
       this.$router.push({
-        name: 'admin-registerPaymentMethods',
+        name: 'admin-payment-methods-register',
         params: { id: paymentMethod.id },
       });
     }

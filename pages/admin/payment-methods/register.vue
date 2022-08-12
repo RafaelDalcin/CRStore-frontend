@@ -9,7 +9,7 @@
             cols="2"
           >
             <v-text-field
-              v-model="paymentMethod.id"
+              v-model="paymentMethod.id "
               placeholder="ID"
               label="ID"
               disabled
@@ -88,11 +88,11 @@ export default {
         //por isso ele vai apenas com o objeto da categoria para o cadastro
         //como no final tem um RETURN, ele vai cair fora da função PERSISTIR
         if (!this.paymentMethod.id) {
-          await this.$api.post('http://localhost:5555/payment-method/persist', paymentMethod);
+          await this.$api.post('payment-method/persist', paymentMethod);
           this.$toast.success('Cadastro realizado com sucesso!');
           return this.$router.push('/admin/payment-methods/');
         }
-        await this.$api.post(`http://localhost:5555/payment-method/persist`, paymentMethod);
+        await this.$api.post(`payment-method/persist`, paymentMethod);
         this.$toast.success('Cadastro atualizado com sucesso!');
         return this.$router.push('/admin/payment-methods/');
       } catch (error) {
@@ -100,7 +100,7 @@ export default {
       }
     },
     async getById (id) {
-      let response = await this.$api.get(`http://localhost:5555/payment-method/${id}`);
+      let response = await this.$api.get(`payment-method/${id}`);
       this.paymentMethod = response.data
     }
   }
