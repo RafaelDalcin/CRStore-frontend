@@ -98,23 +98,29 @@ export default {
       fixed: false,
       items: [
 
-      // ---------> ADMINS PAGE <---------
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
+          icon: 'mdi-account-school',
+          title: 'Alunos',
+          to: '/alunos'
         },
+
         {
-          icon: 'mdi-account',
-          title: 'Login',
-          to: '/public/login/'
+          icon: 'mdi-account-group',
+          title: 'Grupos',
+          to: '/grupos'
+        },
+
+        {
+          icon: 'mdi-human-male-female-child',
+          title: 'Famílias',
+          to: '/familias'
         },
         
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'CRStore'
+      title: 'Sistema de Gestão de Pacientes'
     }
   }
 }
